@@ -1,0 +1,367 @@
+   <html>
+ <head>
+ 
+ <link rel="stylesheet" href="../assets/css/pages/ratingstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+ 
+   <style type="text/css">
+   body {
+  background-color: lightblue;
+}
+.doc-search-card {
+	margin-top: 20px;
+}
+
+.search-doc-info {
+	margin-left: 10px;
+}
+
+.search-doc-info h3 {
+	margin-top: 0px;
+}
+
+.doc-search-actions {
+	display: flex;
+	flex-direction: column;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+
+.mt-10 {
+	margin-top: 10px;
+}
+
+.book-section {
+	margin-left: 20px;
+}
+
+/*comment css*/
+.card {
+	border-radius: 5px;
+	background-color: #fff;
+	padding-left: 60px;
+	padding-right: 60px;
+	margin-top: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px
+}
+
+.rating-box {
+	width: 130px;
+	height: 130px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FBC02D;
+	color: #fff
+}
+
+.rating-label {
+	font-weight: bold
+}
+
+.rating-bar {
+	width: 300px;
+	padding: 8px;
+	border-radius: 5px
+}
+
+.bar-container {
+	width: 100%;
+	background-color: #f1f1f1;
+	text-align: center;
+	color: white;
+	border-radius: 20px;
+	cursor: pointer;
+	margin-bottom: 5px
+}
+
+.bar-5 {
+	width: 70%;
+	height: 13px;
+	background-color: #FBC02D;
+	border-radius: 20px
+}
+
+.bar-4 {
+	width: 30%;
+	height: 13px;
+	background-color: #FBC02D;
+	border-radius: 20px
+}
+
+.bar-3 {
+	width: 20%;
+	height: 13px;
+	background-color: #FBC02D;
+	border-radius: 20px
+}
+
+.bar-2 {
+	width: 10%;
+	height: 13px;
+	background-color: #FBC02D;
+	border-radius: 20px
+}
+
+.bar-1 {
+	width: 0%;
+	height: 13px;
+	background-color: #FBC02D;
+	border-radius: 20px
+}
+
+td {
+	padding-bottom: 10px
+}
+
+.star-active {
+	color: #FBC02D;
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+
+.star-active:hover {
+	color: #F9A825;
+	cursor: pointer
+}
+
+.star-inactive {
+	color: #CFD8DC;
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+
+.blue-text {
+	color: #0091EA
+}
+
+.content {
+	font-size: 18px
+}
+
+.profile-pic {
+	width: 90px;
+	height: 90px;
+	border-radius: 100%;
+	margin-right: 30px
+}
+
+.pic {
+	width: 80px;
+	height: 80px;
+	margin-right: 10px
+}
+
+.vote {
+	cursor: pointer
+}
+
+/*rating*/
+.rating {
+	display: inline-block;
+	position: relative;
+	height: 50px;
+	line-height: 50px;
+	font-size: 50px;
+}
+
+.rating label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	cursor: pointer;
+}
+
+.rating label:last-child {
+	position: static;
+}
+
+.rating label:nth-child(1) {
+	z-index: 5;
+}
+
+.rating label:nth-child(2) {
+	z-index: 4;
+}
+
+.rating label:nth-child(3) {
+	z-index: 3;
+}
+
+.rating label:nth-child(4) {
+	z-index: 2;
+}
+
+.rating label:nth-child(5) {
+	z-index: 1;
+}
+
+.rating label input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.rating label .icon {
+	float: left;
+	color: transparent;
+}
+
+.rating label:last-child .icon {
+	color: #000;
+}
+
+.rating:not(:hover) label input:checked ~.icon, .rating:hover label:hover input
+	 ~.icon {
+	color: #fbc02d;
+}
+
+.rating label input:focus:not(:checked) ~.icon:last-child {
+	color: #000;
+	text-shadow: 0 0 5px #09f;
+}
+
+@media ( max-width : 400px) {
+	.doc-search-card {
+		flex-direction: column;
+	}
+	.book-section {
+		margin-left: 0px;
+	}
+	.mbl-column {
+		flex-direction: column;
+	}
+	@media ( max-width : 400px) {
+		.doc-search-card {
+			flex-direction: column;
+		}
+		.book-section {
+			margin-left: 0px;
+		}
+	}
+	.team-info {
+		display: flex;
+	}
+	.doc-image {
+		margin-right: 20px;
+	}
+}
+</style>
+
+</head>
+ 
+ 
+ 
+ <body><form class="form-horizontal auth-form"
+										  th:action="@{/Reviews/saveReviews/{pid}(pid=${productlist.productId})}"
+										th:object="${reviewObject}">
+
+										<div class="form-group">
+											<input type="hidden" id="reviewId" name="reviewId" th:value="*{reviewId}"></input>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<label>name</label>
+													<input class="form-control" required="required" id="name"
+															name="name" type="text" th:value="*{name}" placeholder="Enter your name">
+															</div>
+															
+															<div class="form-group">
+															<label>Email</label>
+													
+													<input class="form-control" required="required" id="Email"
+															name="Email" type="email" th:value="*{Email}" placeholder="Enter your Email">
+															</div>
+														 
+													<input class="form-control" required="required" id="Reviews"
+															name="Reviews" type="Reviews" th:value="*{Reviews}" placeholder="Enter Reviews">
+															</div>
+		
+			 
+			 
+<!-- 			 <div> -->
+
+<!-- 											<div class="rating"> -->
+<!-- 												<label> <input type="radio" id="rating" -->
+<!-- 													name="rating" th:value="1" /> <span class="icon">★</span> -->
+<!-- 												</label> <label> <input type="radio" id="rating" -->
+<!-- 													name="rating" th:value="2" /> <span class="icon">★</span> -->
+<!-- 													<span class="icon">★</span> -->
+<!-- 												</label> <label> <input type="radio" id="rating" -->
+<!-- 													name="rating" th:value="3" /> <span class="icon">★</span> -->
+<!-- 													<span class="icon">★</span> <span class="icon">★</span> -->
+<!-- 												</label> <label> <input type="radio" id="rating" -->
+<!-- 													name="rating" th:value="4" /> <span class="icon">★</span> -->
+<!-- 													<span class="icon">★</span> <span class="icon">★</span> <span -->
+<!-- 													class="icon">★</span> -->
+<!-- 												</label> <label> <input type="radio" id="rating" -->
+<!-- 													name="rating" th:value="5" /> <span class="icon">★</span> -->
+<!-- 													<span class="icon">★</span> <span class="icon">★</span> <span -->
+<!-- 													class="icon">★</span> <span class="icon">★</span> -->
+<!-- 												</label> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 			 <div> -->
+<!-- 			   <div class="rating"> -->
+<!--   <label>   <input type="radio" id="rating" name="star" th:value="1"/><span class="icon">★</span></label> -->
+<!--   <label>   <input type="radio" id="rating" name="rating" th:value="2"/> <span class="icon">★</span></label> -->
+<!--   <label>   <input type="radio" id="rating" name="rating" th:value="3"/> <span class="icon">★</span></label> -->
+<!--   <label>   <input type="radio" id="rating" name="rating" th:value="4"/><span class="icon">★</span> </label> -->
+<!--   <label>   <input type="radio" id="rating" name="rating" th:value="5"/><span class="icon">★</span> </label> -->
+<!--    </div></div> -->
+			 
+			 <div>
+
+											<div class="rating">
+												<label> <input type="radio" id="rating"
+													name="rating" th:value="1" /> <span class="icon">★</span>
+												</label> <label> <input type="radio" id="rating"
+													name="rating" th:value="2" /> <span class="icon">★</span>
+													<span class="icon">★</span>
+												</label> <label> <input type="radio" id="rating"
+													name="rating" th:value="3" /> <span class="icon">★</span>
+													<span class="icon">★</span> <span class="icon">★</span>
+												</label> <label> <input type="radio" id="rating"
+													name="rating" th:value="4" /> <span class="icon">★</span>
+													<span class="icon">★</span> <span class="icon">★</span> <span
+													class="icon">★</span>
+												</label> <label> <input type="radio" id="rating"
+													name="rating" th:value="5" /> <span class="icon">★</span>
+													<span class="icon">★</span> <span class="icon">★</span> <span
+													class="icon">★</span> <span class="icon">★</span>
+												</label>
+											</div>
+										</div>
+			 
+			 
+			 				
+												<div class="pull-right">
+											<button type="submit" class="btn btn-primary">Submit Your Review</button>
+												
+										</div>
+
+
+											</div>
+ <script type="text/javascript">
+ 	var rate = 0;
+  
+function startRating(item){
+	rate=item.id[0];
+	sessionStorage.star = rate;
+	for(var i=0;i<5;i++){
+		if(i<rate){
+			document.getElementById((i+1)).style.color="yellow";
+		}
+		else{
+			document.getElementById((i+1)).style.color="black";
+		}
+	}
+}		
+ </script>		 					</div>
+										
+										
+										
+									</form></body></html>
