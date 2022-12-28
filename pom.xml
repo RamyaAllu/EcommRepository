@@ -15,6 +15,7 @@
 	<artifactId>Ecom_Project-3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Ecomm</name>
+	<packaging>war</packaging>
 	<description>Ecom Project</description>
 
 	<properties>
